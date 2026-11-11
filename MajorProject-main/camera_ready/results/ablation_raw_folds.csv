@@ -1,0 +1,226 @@
+dataset,dataset_name,model,repeat,seed,fold,global_fold,val_accuracy,val_f1,val_auc,workload_metric
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,1,42,1,1,93.4065934065934,90.9090909090909,0.9922600619195047,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,1,42,1,1,95.6043956043956,93.93939393939394,0.9860681114551083,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),1,42,1,1,94.5054945054945,92.53731343283582,0.9912280701754386,0.03296703296703297
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,1,42,2,2,96.7032967032967,95.65217391304348,0.9948400412796697,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,1,42,2,2,95.6043956043956,94.28571428571428,0.9953560371517028,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),1,42,2,2,95.6043956043956,94.28571428571428,0.9932920536635707,0.03296703296703297
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,1,42,3,3,95.6043956043956,94.28571428571428,0.9969040247678019,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,1,42,3,3,96.7032967032967,95.65217391304348,0.9963880288957688,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),1,42,3,3,96.7032967032967,95.77464788732394,0.9974200206398349,0.01098901098901099
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,1,42,4,4,97.8021978021978,96.96969696969697,0.978328173374613,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,1,42,4,4,97.8021978021978,97.05882352941177,0.9876160990712075,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),1,42,4,4,98.9010989010989,98.50746268656717,0.9855521155830753,0.01098901098901099
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,1,42,5,5,95.6043956043956,94.28571428571428,0.9963880288957689,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,1,42,5,5,97.8021978021978,97.05882352941177,0.9927760577915377,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),1,42,5,5,97.8021978021978,97.05882352941177,0.9953560371517027,0.02197802197802198
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,2,101,1,6,96.7032967032967,95.52238805970148,0.9840041279669763,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,2,101,1,6,96.7032967032967,95.52238805970148,0.9711042311661507,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),2,101,1,6,96.7032967032967,95.52238805970148,0.9881320949432404,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,2,101,2,7,97.8021978021978,97.05882352941177,0.9969040247678018,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,2,101,2,7,95.6043956043956,94.28571428571428,0.9974200206398349,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),2,101,2,7,97.8021978021978,97.05882352941177,0.9963880288957689,0.01098901098901099
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,2,101,3,8,96.7032967032967,95.52238805970148,0.9989680082559339,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,2,101,3,8,98.9010989010989,98.50746268656717,0.9963880288957689,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),2,101,3,8,97.8021978021978,96.96969696969697,0.9994840041279669,0.01098901098901099
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,2,101,4,9,96.7032967032967,95.65217391304348,0.9938080495356038,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,2,101,4,9,95.6043956043956,94.28571428571428,0.9927760577915377,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),2,101,4,9,96.7032967032967,95.65217391304348,0.9958720330237358,0.02197802197802198
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,2,101,5,10,97.8021978021978,96.96969696969697,0.9901960784313726,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,2,101,5,10,98.9010989010989,98.50746268656717,0.9953560371517027,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),2,101,5,10,97.8021978021978,96.96969696969697,0.9922600619195048,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,3,202,1,11,95.6043956043956,94.11764705882352,0.9963880288957687,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,3,202,1,11,97.8021978021978,97.05882352941177,0.9974200206398349,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),3,202,1,11,96.7032967032967,95.65217391304348,0.9958720330237358,0.01098901098901099
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,3,202,2,12,95.6043956043956,94.28571428571428,0.9979360165118679,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,3,202,2,12,98.9010989010989,98.55072463768117,0.9994840041279669,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),3,202,2,12,95.6043956043956,94.28571428571428,0.9974200206398349,0.04395604395604396
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,3,202,3,13,98.9010989010989,98.50746268656717,0.9994840041279669,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,3,202,3,13,97.8021978021978,97.05882352941177,0.9974200206398348,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),3,202,3,13,98.9010989010989,98.50746268656717,0.9989680082559339,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,3,202,4,14,93.4065934065934,90.9090909090909,0.9504643962848297,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,3,202,4,14,95.6043956043956,93.75,0.9850361197110422,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),3,202,4,14,93.4065934065934,90.9090909090909,0.957688338493292,0.054945054945054944
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,3,202,5,15,97.8021978021978,96.96969696969697,1.0,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,3,202,5,15,100.0,100.0,1.0,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),3,202,5,15,97.8021978021978,96.96969696969697,1.0,0.01098901098901099
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,4,303,1,16,95.6043956043956,93.93939393939394,0.9917440660474717,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,4,303,1,16,96.7032967032967,95.52238805970148,0.9974200206398349,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),4,303,1,16,95.6043956043956,93.93939393939394,0.9953560371517027,0.01098901098901099
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,4,303,2,17,97.8021978021978,96.96969696969697,0.9798761609907121,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,4,303,2,17,97.8021978021978,96.96969696969697,0.9716202270381837,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),4,303,2,17,97.8021978021978,96.96969696969697,0.9716202270381837,0.01098901098901099
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,4,303,3,18,95.6043956043956,94.28571428571428,0.9943240454076367,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,4,303,3,18,92.3076923076923,90.41095890410958,0.9938080495356038,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),4,303,3,18,96.7032967032967,95.65217391304348,0.9901960784313726,0.02197802197802198
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,4,303,4,19,98.9010989010989,98.55072463768117,0.9989680082559339,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,4,303,4,19,100.0,100.0,1.0,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),4,303,4,19,98.9010989010989,98.55072463768117,1.0,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,4,303,5,20,97.8021978021978,97.05882352941177,0.9969040247678018,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,4,303,5,20,98.9010989010989,98.55072463768117,1.0,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),4,303,5,20,98.9010989010989,98.50746268656717,0.9969040247678018,0.01098901098901099
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,5,404,1,21,97.8021978021978,97.05882352941177,0.998452012383901,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,5,404,1,21,100.0,100.0,1.0,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),5,404,1,21,97.8021978021978,97.05882352941177,0.998452012383901,0.02197802197802198
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,5,404,2,22,94.5054945054945,92.95774647887323,0.9969040247678018,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,5,404,2,22,98.9010989010989,98.55072463768117,1.0,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),5,404,2,22,94.5054945054945,93.15068493150685,0.9979360165118679,0.06593406593406594
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,5,404,3,23,93.4065934065934,90.9090909090909,0.9731682146542827,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,5,404,3,23,94.5054945054945,92.3076923076923,0.9685242518059856,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),5,404,3,23,95.6043956043956,93.93939393939394,0.9705882352941178,0.04395604395604396
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,5,404,4,24,95.6043956043956,93.75,0.978328173374613,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,5,404,4,24,96.7032967032967,95.52238805970148,0.9901960784313726,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),5,404,4,24,96.7032967032967,95.38461538461539,0.9860681114551084,0.03296703296703297
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Path-0-Only Baseline,5,404,5,25,96.7032967032967,95.52238805970148,0.9969040247678018,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Classical 4-D Bottleneck,5,404,5,25,97.8021978021978,96.96969696969697,0.9901960784313726,0.0
+breast_cancer,Wisconsin Diagnostic Breast Cancer (WDBC),Parameter-Matched M4 (Adaptive Classical),5,404,5,25,96.7032967032967,95.52238805970148,0.9912280701754386,0.0
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,1,42,1,1,79.59183673469387,78.26086956521739,0.8712374581939799,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,1,42,1,1,71.42857142857143,70.83333333333334,0.8277591973244147,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),1,42,1,1,77.55102040816327,75.55555555555556,0.8277591973244147,0.46938775510204084
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,1,42,2,2,79.59183673469387,75.0,0.8619528619528619,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,1,42,2,2,77.55102040816327,70.27027027027027,0.8299663299663299,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),1,42,2,2,77.55102040816327,74.4186046511628,0.8282828282828283,0.20408163265306123
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,1,42,3,3,75.0,75.0,0.8636363636363636,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,1,42,3,3,77.08333333333334,76.59574468085107,0.8811188811188811,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),1,42,3,3,75.0,75.0,0.8811188811188811,0.1875
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,1,42,4,4,72.91666666666666,69.76744186046511,0.7937062937062936,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,1,42,4,4,77.08333333333334,75.55555555555556,0.8286713286713286,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),1,42,4,4,72.91666666666666,71.11111111111111,0.8566433566433567,0.2916666666666667
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,1,42,5,5,75.0,71.42857142857143,0.8391608391608392,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,1,42,5,5,66.66666666666666,63.63636363636363,0.7561188811188811,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),1,42,5,5,72.91666666666666,69.76744186046511,0.8234265734265734,0.1875
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,2,101,1,6,79.59183673469387,77.27272727272727,0.8461538461538461,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,2,101,1,6,73.46938775510205,71.11111111111111,0.7934782608695652,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),2,101,1,6,73.46938775510205,72.3404255319149,0.8311036789297659,0.20408163265306123
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,2,101,2,7,75.51020408163265,75.0,0.8821548821548821,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,2,101,2,7,77.55102040816327,77.55102040816327,0.8535353535353535,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),2,101,2,7,83.6734693877551,82.6086956521739,0.8939393939393939,0.3469387755102041
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,2,101,3,8,66.66666666666666,66.66666666666666,0.8216783216783217,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,2,101,3,8,70.83333333333334,66.66666666666666,0.7832167832167832,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),2,101,3,8,68.75,65.11627906976744,0.8024475524475525,0.20833333333333334
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,2,101,4,9,79.16666666666666,72.22222222222221,0.8881118881118882,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,2,101,4,9,75.0,70.0,0.8758741258741258,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),2,101,4,9,72.91666666666666,68.29268292682927,0.8898601398601398,0.2708333333333333
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,2,101,5,10,85.41666666666666,84.44444444444444,0.9038461538461539,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,2,101,5,10,81.25,80.85106382978722,0.8828671328671329,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),2,101,5,10,81.25,80.0,0.8723776223776224,0.08333333333333333
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,3,202,1,11,85.71428571428571,83.72093023255815,0.9515050167224081,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,3,202,1,11,81.63265306122449,76.92307692307693,0.9013377926421404,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),3,202,1,11,83.6734693877551,83.33333333333334,0.9163879598662208,0.3877551020408163
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,3,202,2,12,77.55102040816327,73.17073170731707,0.82996632996633,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,3,202,2,12,77.55102040816327,74.4186046511628,0.8754208754208754,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),3,202,2,12,81.63265306122449,80.0,0.9107744107744108,0.1836734693877551
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,3,202,3,13,72.91666666666666,66.66666666666666,0.8111888111888113,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,3,202,3,13,75.0,66.66666666666666,0.8006993006993007,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),3,202,3,13,70.83333333333334,65.0,0.8164335664335665,0.3333333333333333
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,3,202,4,14,81.25,80.0,0.8566433566433567,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,3,202,4,14,77.08333333333334,75.55555555555556,0.8260489510489512,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),3,202,4,14,75.0,76.0,0.8706293706293706,0.2916666666666667
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,3,202,5,15,75.0,71.42857142857143,0.8111888111888113,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,3,202,5,15,79.16666666666666,77.27272727272727,0.8181818181818181,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),3,202,5,15,72.91666666666666,71.11111111111111,0.812937062937063,0.22916666666666666
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,4,303,1,16,77.55102040816327,75.55555555555556,0.8762541806020067,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,4,303,1,16,71.42857142857143,69.56521739130434,0.8127090301003345,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),4,303,1,16,71.42857142857143,70.83333333333334,0.8394648829431437,0.20408163265306123
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,4,303,2,17,77.55102040816327,76.59574468085107,0.8181818181818182,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,4,303,2,17,73.46938775510205,71.11111111111111,0.7601010101010102,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),4,303,2,17,75.51020408163265,75.0,0.8265993265993267,0.22448979591836735
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,4,303,3,18,79.16666666666666,76.19047619047619,0.8636363636363636,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,4,303,3,18,72.91666666666666,69.76744186046511,0.7814685314685315,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),4,303,3,18,79.16666666666666,77.27272727272727,0.8741258741258742,0.22916666666666666
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,4,303,4,19,81.25,78.04878048780488,0.8513986013986014,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,4,303,4,19,79.16666666666666,77.27272727272727,0.8181818181818181,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),4,303,4,19,79.16666666666666,77.27272727272727,0.8758741258741258,0.16666666666666666
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,4,303,5,20,77.08333333333334,78.43137254901961,0.9020979020979021,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,4,303,5,20,72.91666666666666,73.46938775510205,0.8409090909090909,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),4,303,5,20,79.16666666666666,79.16666666666666,0.9265734265734266,0.25
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,5,404,1,21,73.46938775510205,71.11111111111111,0.8093645484949833,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,5,404,1,21,75.51020408163265,75.0,0.8511705685618729,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),5,404,1,21,75.51020408163265,72.72727272727273,0.8227424749163879,0.22448979591836735
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,5,404,2,22,67.3469387755102,66.66666666666666,0.7811447811447813,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,5,404,2,22,69.38775510204081,69.38775510204081,0.8173400673400674,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),5,404,2,22,69.38775510204081,68.08510638297872,0.7946127946127945,0.5102040816326531
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,5,404,3,23,79.16666666666666,79.16666666666666,0.9143356643356644,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,5,404,3,23,79.16666666666666,75.0,0.8452797202797203,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),5,404,3,23,83.33333333333334,82.6086956521739,0.944055944055944,0.3333333333333333
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,5,404,4,24,83.33333333333334,81.81818181818183,0.8618881118881118,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,5,404,4,24,75.0,73.91304347826086,0.8216783216783217,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),5,404,4,24,75.0,72.72727272727273,0.8216783216783218,0.2708333333333333
+heart,UCI Heart Disease (Cleveland),Path-0-Only Baseline,5,404,5,25,79.16666666666666,75.0,0.8444055944055944,0.0
+heart,UCI Heart Disease (Cleveland),Classical 4-D Bottleneck,5,404,5,25,75.0,71.42857142857143,0.7587412587412586,0.0
+heart,UCI Heart Disease (Cleveland),Parameter-Matched M4 (Adaptive Classical),5,404,5,25,75.0,70.0,0.8513986013986015,0.125
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,1,42,1,1,80.48780487804879,72.09302325581395,0.8735465116279071,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,1,42,1,1,76.42276422764228,65.06024096385542,0.8383720930232557,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),1,42,1,1,79.67479674796748,69.1358024691358,0.8578488372093023,0.4146341463414634
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,1,42,2,2,72.35772357723577,65.3061224489796,0.8029069767441861,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,1,42,2,2,71.54471544715447,66.01941747572816,0.7601744186046511,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),1,42,2,2,73.17073170731707,68.57142857142857,0.804360465116279,0.45528455284552843
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,1,42,3,3,73.17073170731707,65.26315789473685,0.8604651162790697,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,1,42,3,3,78.86178861788618,71.73913043478261,0.8632267441860464,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),1,42,3,3,74.79674796747967,68.68686868686868,0.8610465116279069,0.3983739837398374
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,1,42,4,4,73.98373983739837,64.44444444444444,0.7994186046511629,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,1,42,4,4,69.10569105691057,59.57446808510638,0.7125,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),1,42,4,4,71.54471544715447,65.34653465346535,0.7840116279069768,0.5447154471544715
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,1,42,5,5,72.1311475409836,62.22222222222222,0.7669642857142858,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,1,42,5,5,68.0327868852459,58.06451612903226,0.7284226190476191,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),1,42,5,5,70.49180327868852,62.5,0.7735119047619048,0.4098360655737705
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,2,101,1,6,77.23577235772358,65.85365853658537,0.8180232558139535,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,2,101,1,6,70.73170731707317,60.86956521739131,0.7803779069767441,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),2,101,1,6,75.60975609756098,64.28571428571429,0.7909883720930232,0.4715447154471545
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,2,101,2,7,73.17073170731707,63.73626373626373,0.7732558139534884,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,2,101,2,7,65.85365853658537,56.25,0.7552325581395348,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),2,101,2,7,73.98373983739837,65.95744680851064,0.770639534883721,0.2601626016260163
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,2,101,3,8,73.98373983739837,70.37037037037037,0.8494186046511628,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,2,101,3,8,74.79674796747967,69.3069306930693,0.8165697674418604,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),2,101,3,8,75.60975609756098,70.58823529411765,0.8377906976744186,0.3252032520325203
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,2,101,4,9,76.42276422764228,69.47368421052632,0.8465116279069768,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,2,101,4,9,66.66666666666666,59.4059405940594,0.7665697674418603,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),2,101,4,9,76.42276422764228,68.81720430107528,0.8267441860465117,0.43089430894308944
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,2,101,5,10,72.95081967213115,63.73626373626373,0.7651785714285715,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,2,101,5,10,67.21311475409836,59.183673469387756,0.7160714285714286,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),2,101,5,10,74.59016393442623,68.04123711340206,0.8101190476190476,0.28688524590163933
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,3,202,1,11,73.17073170731707,60.24096385542169,0.7744186046511627,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,3,202,1,11,73.98373983739837,65.95744680851064,0.7947674418604651,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),3,202,1,11,70.73170731707317,56.09756097560976,0.7537790697674418,0.44715447154471544
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,3,202,2,12,69.10569105691057,60.416666666666664,0.7552325581395349,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,3,202,2,12,67.47967479674797,53.48837209302325,0.7228197674418604,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),3,202,2,12,65.85365853658537,57.14285714285714,0.7552325581395348,0.5121951219512195
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,3,202,3,13,78.86178861788618,72.3404255319149,0.8630813953488372,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,3,202,3,13,73.98373983739837,68.62745098039215,0.8396802325581395,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),3,202,3,13,76.42276422764228,69.47368421052632,0.834593023255814,0.43902439024390244
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,3,202,4,14,78.86178861788618,71.73913043478261,0.8191860465116279,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,3,202,4,14,76.42276422764228,66.66666666666666,0.7792151162790698,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),3,202,4,14,74.79674796747967,66.66666666666666,0.8023255813953488,0.3821138211382114
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,3,202,5,15,68.0327868852459,59.79381443298969,0.7559523809523809,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,3,202,5,15,67.21311475409836,58.333333333333336,0.736904761904762,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),3,202,5,15,69.67213114754098,61.855670103092784,0.7770833333333333,0.26229508196721313
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,4,303,1,16,71.54471544715447,62.365591397849464,0.7688953488372093,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,4,303,1,16,62.601626016260155,46.51162790697674,0.6752906976744186,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),4,303,1,16,71.54471544715447,61.53846153846154,0.7831395348837209,0.3821138211382114
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,4,303,2,17,81.30081300813008,74.72527472527473,0.8633720930232558,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,4,303,2,17,78.04878048780488,71.57894736842105,0.8327034883720931,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),4,303,2,17,78.86178861788618,74.0,0.8555232558139535,0.3821138211382114
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,4,303,3,18,77.23577235772358,70.2127659574468,0.8215116279069767,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,4,303,3,18,75.60975609756098,69.38775510204081,0.7895348837209302,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),4,303,3,18,78.04878048780488,71.57894736842105,0.8127906976744186,0.35772357723577236
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,4,303,4,19,70.73170731707317,60.0,0.8218023255813953,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,4,303,4,19,69.10569105691057,61.224489795918366,0.7389534883720931,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),4,303,4,19,73.17073170731707,62.92134831460674,0.8174418604651164,0.43089430894308944
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,4,303,5,20,72.95081967213115,62.92134831460674,0.80625,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,4,303,5,20,73.77049180327869,64.44444444444444,0.7726190476190476,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),4,303,5,20,72.1311475409836,60.46511627906976,0.825,0.39344262295081966
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,5,404,1,21,76.42276422764228,69.47368421052632,0.8383720930232559,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,5,404,1,21,73.98373983739837,66.66666666666666,0.780813953488372,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),5,404,1,21,78.86178861788618,70.45454545454545,0.8311046511627908,0.37398373983739835
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,5,404,2,22,71.54471544715447,58.82352941176471,0.7552325581395348,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,5,404,2,22,67.47967479674797,53.48837209302325,0.6991279069767442,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),5,404,2,22,69.91869918699187,57.47126436781609,0.7462209302325582,0.5365853658536586
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,5,404,3,23,73.17073170731707,66.66666666666666,0.8113372093023256,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,5,404,3,23,71.54471544715447,66.01941747572816,0.8168604651162791,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),5,404,3,23,77.23577235772358,68.88888888888889,0.8252906976744185,0.35772357723577236
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,5,404,4,24,82.11382113821138,76.08695652173914,0.9066860465116279,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,5,404,4,24,83.73983739837398,78.72340425531915,0.9002906976744186,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),5,404,4,24,83.73983739837398,77.77777777777779,0.898546511627907,0.3902439024390244
+diabetes,Pima Indians Diabetes Database,Path-0-Only Baseline,5,404,5,25,75.40983606557377,70.58823529411765,0.8247023809523809,0.0
+diabetes,Pima Indians Diabetes Database,Classical 4-D Bottleneck,5,404,5,25,71.31147540983606,63.91752577319587,0.7782738095238096,0.0
+diabetes,Pima Indians Diabetes Database,Parameter-Matched M4 (Adaptive Classical),5,404,5,25,74.59016393442623,68.04123711340206,0.8008928571428572,0.4016393442622951

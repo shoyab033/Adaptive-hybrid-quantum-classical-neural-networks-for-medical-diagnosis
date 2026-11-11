@@ -1,0 +1,19 @@
+Dataset,Evaluation,Path,Sample Count,Sample Pct (%),Prelim Accuracy (%),Final Accuracy (%),Accuracy Delta (%)
+Wisconsin Diagnostic Breast Cancer (WDBC),5-Fold CV (OOF),Path 0 (0 Q-Layers),446,98.02,97.53,97.53,0.0
+Wisconsin Diagnostic Breast Cancer (WDBC),5-Fold CV (OOF),Path 1 (1 Q-Layers),7,1.54,28.57,71.43,42.86
+Wisconsin Diagnostic Breast Cancer (WDBC),5-Fold CV (OOF),Path 2 (2 Q-Layers),2,0.44,50.0,50.0,0.0
+Wisconsin Diagnostic Breast Cancer (WDBC),Holdout Test (Ensemble),Path 0 (0 Q-Layers),109,95.61,98.17,98.17,0.0
+Wisconsin Diagnostic Breast Cancer (WDBC),Holdout Test (Ensemble),Path 1 (1 Q-Layers),3,2.63,100.0,100.0,0.0
+Wisconsin Diagnostic Breast Cancer (WDBC),Holdout Test (Ensemble),Path 2 (2 Q-Layers),2,1.75,50.0,0.0,-50.0
+UCI Heart Disease (Cleveland),5-Fold CV (OOF),Path 0 (0 Q-Layers),193,79.75,84.97,84.97,0.0
+UCI Heart Disease (Cleveland),5-Fold CV (OOF),Path 1 (1 Q-Layers),39,16.12,46.15,46.15,0.0
+UCI Heart Disease (Cleveland),5-Fold CV (OOF),Path 2 (2 Q-Layers),10,4.13,0.0,20.0,20.0
+UCI Heart Disease (Cleveland),Holdout Test (Ensemble),Path 0 (0 Q-Layers),49,80.33,91.84,91.84,0.0
+UCI Heart Disease (Cleveland),Holdout Test (Ensemble),Path 1 (1 Q-Layers),11,18.03,54.55,63.64,9.09
+UCI Heart Disease (Cleveland),Holdout Test (Ensemble),Path 2 (2 Q-Layers),1,1.64,0.0,0.0,0.0
+Pima Indians Diabetes Database,5-Fold CV (OOF),Path 0 (0 Q-Layers),436,71.01,82.11,82.11,0.0
+Pima Indians Diabetes Database,5-Fold CV (OOF),Path 1 (1 Q-Layers),106,17.26,56.6,54.72,-1.89
+Pima Indians Diabetes Database,5-Fold CV (OOF),Path 2 (2 Q-Layers),72,11.73,58.33,52.78,-5.56
+Pima Indians Diabetes Database,Holdout Test (Ensemble),Path 0 (0 Q-Layers),99,64.29,83.84,83.84,0.0
+Pima Indians Diabetes Database,Holdout Test (Ensemble),Path 1 (1 Q-Layers),41,26.62,53.66,53.66,0.0
+Pima Indians Diabetes Database,Holdout Test (Ensemble),Path 2 (2 Q-Layers),14,9.09,57.14,71.43,14.29

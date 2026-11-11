@@ -1,0 +1,28 @@
+experiment:
+  name: "Adaptive-HQNN-Medical-Prediction"
+  random_seed: 42
+  cv_folds: 5
+  cv_repeats: 1  # Standard 5-fold CV (can be set to 3 or 5 for repeated CV)
+  test_size: 0.20  # For holdout split validation if needed
+  stratified: true
+
+datasets:
+  - "breast_cancer"
+  - "heart"
+  - "diabetes"
+
+hardware:
+  quantum_device: "default.qubit"
+  n_qubits: 4
+  n_layers_fixed: 2
+  n_layers_adaptive_max: 2
+  torch_seed: 42
+  numpy_seed: 42
+
+metrics:
+  - "accuracy"
+  - "precision"
+  - "recall"
+  - "specificity"
+  - "f1"
+  - "roc_auc"

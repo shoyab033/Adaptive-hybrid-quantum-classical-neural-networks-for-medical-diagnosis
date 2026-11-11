@@ -1,0 +1,57 @@
+dataset_name: "breast_cancer"
+display_name: "Wisconsin Diagnostic Breast Cancer (WDBC)"
+source: "UCI Machine Learning Repository / Scikit-Learn"
+raw_data_path: "data/raw/breast_cancer/wdbc.csv"
+
+target:
+  name: "diagnosis"
+  positive_label: "M"
+  negative_label: "B"
+  positive_int: 1
+  negative_int: 0
+  description: "M = malignant (1), B = benign (0)"
+
+features:
+  numerical:
+    - "mean_radius"
+    - "mean_texture"
+    - "mean_perimeter"
+    - "mean_area"
+    - "mean_smoothness"
+    - "mean_compactness"
+    - "mean_concavity"
+    - "mean_concave_points"
+    - "mean_symmetry"
+    - "mean_fractal_dimension"
+    - "radius_error"
+    - "texture_error"
+    - "perimeter_error"
+    - "area_error"
+    - "smoothness_error"
+    - "compactness_error"
+    - "concavity_error"
+    - "concave_points_error"
+    - "symmetry_error"
+    - "fractal_dimension_error"
+    - "worst_radius"
+    - "worst_texture"
+    - "worst_perimeter"
+    - "worst_area"
+    - "worst_smoothness"
+    - "worst_compactness"
+    - "worst_concavity"
+    - "worst_concave_points"
+    - "worst_symmetry"
+    - "worst_fractal_dimension"
+  categorical: []
+  drop_columns:
+    - "id"
+
+missing_values:
+  token: null
+  zero_as_missing_columns: []
+  imputation_strategy: "median"
+
+preprocessing:
+  scaler: "standard"
+  handle_outliers: false

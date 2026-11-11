@@ -1,0 +1,4 @@
+Dataset,Model,CV Accuracy (%),CV Precision (%),CV Recall (%),CV Specificity (%),CV F1 (%),CV ROC-AUC,Holdout Test AUC,Holdout Test F1 (%)
+Wisconsin Diagnostic Breast Cancer (WDBC),Classical MLP (M1),97.80 ± 0.78,96.53 ± 1.17,97.65 ± 2.46,97.89 ± 0.78,97.07 ± 1.07,0.9947 ± 0.0086,0.9907,98.80
+UCI Heart Disease (Cleveland),Classical MLP (M1),83.45 ± 2.23,82.77 ± 4.18,81.03 ± 4.02,85.44 ± 4.33,81.78 ± 2.39,0.8967 ± 0.0202,0.9578,86.67
+Pima Indians Diabetes Database,Classical MLP (M1),77.03 ± 2.41,63.79 ± 3.30,79.41 ± 5.45,75.75 ± 3.91,70.66 ± 3.08,0.8452 ± 0.0276,0.8148,67.72

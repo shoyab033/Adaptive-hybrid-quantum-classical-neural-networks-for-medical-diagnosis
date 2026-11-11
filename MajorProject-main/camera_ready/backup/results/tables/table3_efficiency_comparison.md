@@ -1,0 +1,10 @@
+# Table 3: Estimated Inference Quantum Workload & Computational Efficiency
+
+| Dataset                            | Model              | Avg Inference Q-Layers/Sample   | 0-Q %   | 1-Q %   | 2-Q %   | Inference Q-Reduction (%)   |   Qubits |   Circuit Depth |   Gates / Sample |
+|:-----------------------------------|:-------------------|:--------------------------------|:--------|:--------|:--------|:----------------------------|---------:|----------------:|-----------------:|
+| Wisconsin Diagnostic Breast Cancer | Fixed HQNN (M2)    | 2.00                            | 0.0%    | 0.0%    | 100.0%  | 0.0%                        |        4 |              11 |               17 |
+| Wisconsin Diagnostic Breast Cancer | Adaptive HQNN (M3) | 0.02 ± 0.01                     | 98.0%   | 1.5%    | 0.4%    | 98.8%                       |        4 |              11 |               17 |
+| UCI Heart Disease                  | Fixed HQNN (M2)    | 2.00                            | 0.0%    | 0.0%    | 100.0%  | 0.0%                        |        4 |              11 |               17 |
+| UCI Heart Disease                  | Adaptive HQNN (M3) | 0.24 ± 0.08                     | 79.8%   | 16.1%   | 4.1%    | 87.8%                       |        4 |              11 |               17 |
+| Pima Indians Diabetes              | Fixed HQNN (M2)    | 2.00                            | 0.0%    | 0.0%    | 100.0%  | 0.0%                        |        4 |              11 |               17 |
+| Pima Indians Diabetes              | Adaptive HQNN (M3) | 0.41 ± 0.08                     | 71.0%   | 17.3%   | 11.7%   | 79.6%                       |        4 |              11 |               17 |

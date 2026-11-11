@@ -1,0 +1,4 @@
+Dataset,Classical-only (0 Q) (%),1 Quantum Layer (%),2 Quantum Layers (%),Avg Q-Layers / Sample,Inference Quantum Reduction (%)
+Wisconsin Diagnostic Breast Cancer (WDBC),98.0 ± 0.9,1.5 ± 1.0,0.4 ± 0.6,0.02 ± 0.01,98.8%
+UCI Heart Disease (Cleveland),79.8 ± 7.3,16.1 ± 8.9,4.1 ± 4.2,0.24 ± 0.08,87.8%
+Pima Indians Diabetes Database,71.0 ± 4.0,17.3 ± 9.1,11.7 ± 7.7,0.41 ± 0.08,79.6%

@@ -1,0 +1,48 @@
+dataset_name: "diabetes"
+display_name: "Pima Indians Diabetes Database"
+source: "National Institute of Diabetes and Digestive and Kidney Diseases / UCI / Kaggle"
+raw_data_url: "https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.data.csv"
+raw_data_path: "data/raw/diabetes/pima-indians-diabetes.csv"
+
+target:
+  name: "Outcome"
+  positive_int: 1
+  negative_int: 0
+  description: "1 = diabetic, 0 = non-diabetic"
+
+raw_columns:
+  - "Pregnancies"
+  - "Glucose"
+  - "BloodPressure"
+  - "SkinThickness"
+  - "Insulin"
+  - "BMI"
+  - "DiabetesPedigreeFunction"
+  - "Age"
+  - "Outcome"
+
+features:
+  numerical:
+    - "Pregnancies"
+    - "Glucose"
+    - "BloodPressure"
+    - "SkinThickness"
+    - "Insulin"
+    - "BMI"
+    - "DiabetesPedigreeFunction"
+    - "Age"
+  categorical: []
+  drop_columns: []
+
+missing_values:
+  token: null
+  zero_as_missing_columns:
+    - "Glucose"
+    - "BloodPressure"
+    - "SkinThickness"
+    - "Insulin"
+    - "BMI"
+  imputation_strategy: "median"
+
+preprocessing:
+  scaler: "standard"

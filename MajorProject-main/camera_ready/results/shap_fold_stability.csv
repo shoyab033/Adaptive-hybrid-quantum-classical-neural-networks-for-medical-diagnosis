@@ -1,0 +1,4 @@
+Dataset,Background Size (N_bg),Explained Size (N_eval),Kernel Perturbations (nsamples),Spearman Rho (Mean ± SD),Min Spearman Rho,Max Spearman Rho,Top 3 Dominant Biomarkers
+Wisconsin Diagnostic Breast Cancer (WDBC),30,20,45,0.361 ± 0.088,0.177,0.495,"texture_worst, concavity_worst, concave_points_mean"
+UCI Heart Disease (Cleveland),30,20,45,0.391 ± 0.244,-0.027,0.687,"ca, thal, cp"
+Pima Indians Diabetes Database,30,20,45,0.757 ± 0.128,0.524,0.905,"Glucose, BMI, Age"

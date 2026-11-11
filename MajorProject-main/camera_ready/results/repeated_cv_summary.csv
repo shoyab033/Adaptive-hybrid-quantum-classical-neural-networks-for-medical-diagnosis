@@ -1,0 +1,13 @@
+Dataset,Model,Model ID,Total Fold Evals,Accuracy (%) (Mean ± SD),Accuracy 95% CI,F1-Score (%) (Mean ± SD),F1 95% CI,ROC-AUC (Mean ± SD),ROC-AUC 95% CI,Sensitivity (%) (Mean ± SD),Specificity (%) (Mean ± SD),Avg Workload Metric
+Wisconsin Diagnostic Breast Cancer (WDBC),Classical MLP (M1),M1,25,98.02 ± 1.42,"[97.44, 98.61]",97.34 ± 1.92,"[96.55, 98.13]",0.9946 ± 0.0077,"[0.9915, 0.9978]",97.06 ± 2.94,98.60 ± 1.60,0.000 (nan)
+Wisconsin Diagnostic Breast Cancer (WDBC),Fixed HQNN (M2),M2,25,98.15 ± 1.61,"[97.49, 98.82]",97.51 ± 2.20,"[96.60, 98.42]",0.9956 ± 0.0072,"[0.9926, 0.9985]",97.18 ± 3.00,98.74 ± 1.29,2.000 (Quantum Layers)
+Wisconsin Diagnostic Breast Cancer (WDBC),Adaptive HQNN (M3),M3,25,97.76 ± 1.54,"[97.12, 98.39]",96.98 ± 2.10,"[96.11, 97.84]",0.9898 ± 0.0145,"[0.9839, 0.9958]",96.47 ± 3.06,98.53 ± 1.49,0.032 (Quantum Layers)
+Wisconsin Diagnostic Breast Cancer (WDBC),Adaptive Classical Control (M4),M4,25,97.10 ± 1.45,"[96.50, 97.70]",96.10 ± 1.99,"[95.28, 96.92]",0.9904 ± 0.0143,"[0.9845, 0.9963]",95.88 ± 3.40,97.82 ± 1.85,0.029 (Refinement Blocks)
+Pima Indians Diabetes Database,Classical MLP (M1),M1,25,75.24 ± 4.30,"[73.46, 77.01]",68.60 ± 4.87,"[66.60, 70.61]",0.8434 ± 0.0394,"[0.8272, 0.8597]",77.48 ± 6.66,74.05 ± 6.14,0.000 (nan)
+Pima Indians Diabetes Database,Fixed HQNN (M2),M2,25,75.24 ± 3.41,"[73.83, 76.65]",68.45 ± 4.02,"[66.79, 70.11]",0.8288 ± 0.0340,"[0.8148, 0.8429]",77.11 ± 6.50,74.25 ± 5.29,2.000 (Quantum Layers)
+Pima Indians Diabetes Database,Adaptive HQNN (M3),M3,25,75.21 ± 4.15,"[73.50, 76.92]",68.07 ± 5.07,"[65.97, 70.16]",0.8378 ± 0.0379,"[0.8222, 0.8535]",75.98 ± 8.45,74.80 ± 6.24,0.490 (Quantum Layers)
+Pima Indians Diabetes Database,Adaptive Classical Control (M4),M4,25,73.87 ± 4.41,"[72.05, 75.69]",65.25 ± 6.30,"[62.65, 67.85]",0.8019 ± 0.0417,"[0.7847, 0.8191]",70.76 ± 9.23,75.55 ± 5.49,0.428 (Refinement Blocks)
+UCI Heart Disease (Cleveland),Classical MLP (M1),M1,25,81.34 ± 4.00,"[79.69, 82.98]",79.40 ± 4.57,"[77.52, 81.29]",0.8884 ± 0.0395,"[0.8721, 0.9047]",78.75 ± 7.12,83.55 ± 6.09,0.000 (nan)
+UCI Heart Disease (Cleveland),Fixed HQNN (M2),M2,25,80.42 ± 4.08,"[78.74, 82.11]",78.35 ± 4.74,"[76.39, 80.31]",0.8656 ± 0.0350,"[0.8512, 0.8801]",77.71 ± 8.06,82.77 ± 6.78,2.000 (Quantum Layers)
+UCI Heart Disease (Cleveland),Adaptive HQNN (M3),M3,25,80.75 ± 3.51,"[79.30, 82.20]",78.51 ± 4.32,"[76.72, 80.29]",0.8745 ± 0.0387,"[0.8586, 0.8905]",77.12 ± 7.17,83.82 ± 4.72,0.305 (Quantum Layers)
+UCI Heart Disease (Cleveland),Adaptive Classical Control (M4),M4,25,77.61 ± 5.04,"[75.53, 79.69]",75.37 ± 4.99,"[73.31, 77.43]",0.8432 ± 0.0433,"[0.8253, 0.8610]",74.58 ± 6.57,80.17 ± 8.70,0.298 (Refinement Blocks)

@@ -1,0 +1,340 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{hyperref}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+
+\title{Adaptive Hybrid Quantum-Classical Neural Network for Early Medical Disease Diagnosis Using Explainable AI\\
+}
+
+\author{\IEEEauthorblockN{Anonymous Authors}
+\IEEEauthorblockA{\textit{Department of Computer Science and Engineering} \\
+\textit{Research Laboratory for Quantum Machine Learning and Health Informatics}\\
+Preprint Under Peer Review}
+}
+
+\maketitle
+
+\begin{abstract}
+Hybrid Quantum-Classical Neural Networks (HQNNs) have attracted substantial interest for clinical diagnostic applications on tabular medical data. However, conventional HQNN architectures impose a static circuit execution paradigm in which every input instance is subjected to the same fixed-depth parameterized quantum circuit, irrespective of sample difficulty or model uncertainty. In the current Noisy Intermediate-Scale Quantum (NISQ) era, executing redundant quantum variational layers on low-uncertainty instances introduces unwarranted circuit evaluation overhead without measurable predictive necessity. In this paper, we propose an Adaptive Hybrid Quantum-Classical Neural Network (Adaptive HQNN) that dynamically allocates quantum processing based on instance-level prediction confidence derived from an initial classical feature encoder. The proposed framework supports three distinct inference pathways: a classical-only pathway (0 quantum layers), a single-quantum-layer pathway, and a two-quantum-layer pathway. Routing decision thresholds are selected via a nested three-fold inner cross-validation protocol embedded within each outer training fold, ensuring strict separation between optimization and validation to prevent data leakage. We rigorously benchmark Adaptive HQNN against a Classical Multilayer Perceptron (MLP), a Fixed-Depth HQNN (2 quantum layers), and an Adaptive Classical Control across three clinical tabular datasets: Wisconsin Diagnostic Breast Cancer (WDBC), UCI Cleveland Heart Disease, and Pima Indians Diabetes. Furthermore, model predictions and routing associations are audited using Kernel SHAP. Experimental results indicate that Adaptive HQNN reduces estimated inference-time quantum layer executions by 98.8\% on WDBC (average 0.02 layers/sample), 87.8\% on Heart Disease (average 0.24 layers/sample), and 79.6\% on Diabetes (average 0.41 layers/sample) compared to Fixed HQNN. Paired Wilcoxon signed-rank tests across cross-validation folds reveal no statistically significant difference in ROC-AUC ($p \ge 0.05$). This study demonstrates a measurable trade-off between predictive performance and estimated inference-time quantum workload, providing a resource-aware framework for hybrid quantum machine learning on structured medical data without asserting quantum supremacy.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Quantum Machine Learning, Hybrid Quantum-Classical Neural Networks, Variational Quantum Circuits, Dynamic Computation, Explainable AI, Medical Diagnosis.
+\end{IEEEkeywords}
+
+\section{Introduction}
+Early and accurate medical disease diagnosis is a cornerstone of modern clinical informatics, with machine learning (ML) systems increasingly deployed to assist in screening, risk stratification, and diagnostic triage \cite{biamonte2017quantum, cerezo2021variational}. While classical deep neural networks and tree-based ensembles have achieved strong predictive efficacy on structured clinical tables \cite{chen2016xgboost, gorishniy2021revisiting}, real-world clinical datasets frequently present complex non-linear correlations, high dimensionality relative to sample size, and overlapping decision boundaries near critical diagnostic thresholds \cite{street1993nuclear, detrano1989international}.
+
+In parallel, Quantum Machine Learning (QML) has emerged as a promising computational paradigm. By mapping classical feature vectors into high-dimensional Hilbert spaces via parameterized quantum circuits (variational quantum circuits, or VQCs), QML models can represent expressive feature transformations that are classically non-trivial to formulate \cite{schuld2019quantum, havlicek2019supervised, mitarai2018quantum}. Hybrid Quantum-Classical Neural Networks (HQNNs), which couple classical feedforward encoders with parameterized quantum expectation layers, represent the primary architecture for executing quantum-assisted learning on Noisy Intermediate-Scale Quantum (NISQ) hardware and simulators \cite{bergholm2018pennylane, broughton2020tensorflow}.
+
+Despite active exploration, existing HQNN architectures suffer from a fundamental structural limitation: \textit{static quantum layer allocation}. Under standard formulations, every input instance $x$ is processed through an identical, predetermined sequence of parameterized quantum gates, regardless of whether the sample represents an unambiguous diagnostic presentation or an uncertain borderline case. In hardware-constrained NISQ environments, quantum circuit evaluations incur substantial latency, gate errors, and decoherence noise \cite{mcclean2018barren, cerezo2021variational}. Executing multi-layer quantum circuits on routine, high-confidence samples where classical representations are already decisive is computationally inefficient and practically unmotivated.
+
+While dynamic computation and early-exit mechanisms have been extensively investigated in classical computer vision and natural language processing \cite{teerapittayanon2016branchynet, huang2018multi, han2021dynamic}, sample-wise dynamic selection of quantum variational depth remains largely unaddressed in tabular medical informatics. Specifically, there is a lack of empirical investigations evaluating whether an adaptive confidence-based routing mechanism can selectively assign classical-only, shallow-quantum, or multi-quantum processing paths to individual patient records while maintaining acceptable diagnostic discrimination.
+
+To address this gap, this paper introduces the \textbf{Adaptive Hybrid Quantum-Classical Neural Network (Adaptive HQNN)} framework for tabular disease diagnosis. The proposed system employs a classical feature encoder to generate an initial disease probability and an associated confidence metric. Based on two calibrated routing thresholds ($\tau_{high}, \tau_{low}$), instances are dynamically directed to:
+\begin{enumerate}
+    \item \textbf{Path 0 (Classical-Only)}: When initial confidence is high ($C(x) \ge \tau_{high}$), bypassing quantum execution entirely ($L_Q = 0$).
+    \item \textbf{Path 1 (1-Quantum-Layer)}: When initial confidence is intermediate ($\tau_{low} \le C(x) < \tau_{high}$), executing a single 4-qubit variational circuit layer ($L_Q = 1$).
+    \item \textbf{Path 2 (2-Quantum-Layers)}: When initial uncertainty is high ($C(x) < \tau_{low}$), executing a depth-2 4-qubit variational circuit ($L_Q = 2$).
+\end{enumerate}
+
+To ensure complete scientific rigor and eliminate methodological data leakage, routing thresholds are selected via an inner 3-fold cross-validation scheme within each outer training fold, followed by single-pass outer validation and ensemble-based holdout testing. Furthermore, Kernel SHAP (Shapley Additive Explanations) is integrated to analyze feature attribution patterns and examine clinical biomarker distributions associated with different quantum routing paths.
+
+The key contributions of this work are summarized as follows:
+\begin{itemize}
+    \item We formulate an Adaptive Hybrid Quantum-Classical architecture with uncertainty-guided dynamic quantum layer selection for binary medical classification.
+    \item We implement a leakage-safe nested evaluation pipeline (outer 5-fold CV, inner 3-fold CV, and an isolated holdout test partition) across three established clinical datasets (WDBC, Cleveland Heart, and Pima Diabetes).
+    \item We benchmark Adaptive HQNN against three rigorous control models: a Classical MLP (M1), a Fixed-Depth HQNN (M2), and an Adaptive Classical Control (M4) of matching parametric capacity.
+    \item We demonstrate that Adaptive HQNN reduces estimated inference-time quantum layer executions by 79.6\% to 98.8\% across benchmarks with no statistically significant difference in ROC-AUC ($p \ge 0.05$, paired Wilcoxon signed-rank test).
+    \item We provide an explainable AI audit using Kernel SHAP, aligning local patient-level explanations and surrogate routing associations with exact test indices.
+\end{itemize}
+
+\section{Related Work}
+
+\subsection{Classical Machine Learning for Medical Tabular Data}
+Classical predictive modeling on tabular health records relies heavily on gradient boosted decision trees, such as XGBoost \cite{chen2016xgboost} and LightGBM, as well as regularized Multilayer Perceptrons (MLPs) \cite{gorishniy2021revisiting}. In medical screening, models must balance sensitivity (minimizing false negatives) and specificity (minimizing unnecessary invasive biopsies) \cite{street1993nuclear, detrano1989international}. While deep tabular architectures have advanced, they frequently encounter optimization challenges on small-to-medium clinical cohorts where feature interdependencies are complex and sample counts are limited \cite{gorishniy2021revisiting}.
+
+\subsection{Hybrid Quantum-Classical Neural Networks}
+Parameterized Quantum Circuits (PQCs), also termed Variational Quantum Circuits (VQCs), utilize classical optimization routines to update the parameters of quantum gates embedded in quantum circuits \cite{biamonte2017quantum, cerezo2021variational, mitarai2018quantum}. In hybrid quantum-classical networks, classical neural layers compress high-dimensional input vectors into latent variables, which are subsequently encoded into quantum states via angle or amplitude embedding \cite{schuld2019quantum, havlicek2019supervised}. Expectation values of Pauli observables measured from the quantum state are then mapped to output class logits \cite{bergholm2018pennylane}. Prior studies have applied fixed-depth HQNNs to medical imaging and genomic classifications, demonstrating theoretical representational expressiveness but universally enforcing static quantum execution across all test samples \cite{cerezo2021variational}.
+
+\subsection{Dynamic Neural Networks and Resource-Adaptive Inference}
+Dynamic neural networks adjust their computational graph or execution depth conditioned on the input instance \cite{han2021dynamic}. In classical architectures, early-exit networks such as BranchyNet \cite{teerapittayanon2016branchynet} and MSDNet \cite{huang2018multi} introduce intermediate classification heads that allow confident samples to exit early, reserving deeper layers for difficult inputs. Adaptive computation has also been applied to model cascades and conditional computation \cite{han2021dynamic}. However, transferring conditional execution to hybrid quantum architectures—where the computational trade-off involves quantum circuit evaluations versus classical operations—has remained an open question.
+
+\subsection{Explainable AI in Clinical Machine Learning}
+Explainable AI (XAI) is essential for clinical decision-support systems to ensure algorithmic transparency and guard against spurious correlations \cite{lundberg2017unified, ribeiro2016why}. Lundberg and Lee introduced SHAP (Shapley Additive Explanations), grounded in cooperative game theory, providing unique, additive feature attribution values \cite{lundberg2017unified}. In hybrid quantum-classical modeling, explaining both final prediction outputs and intermediate routing behaviors is critical for clinical auditing.
+
+\section{Problem Formulation and Proposed Method}
+
+\subsection{Problem Definition}
+Let $\mathcal{D} = \{(x_i, y_i)\}_{i=1}^N$ denote a medical tabular dataset, where $x_i \in \mathbb{R}^D$ represents a patient feature vector and $y_i \in \{0, 1\}$ denotes the binary diagnostic label (e.g., benign vs. malignant, disease absent vs. present). The objective is to learn a mapping $f(x; \Theta) \in [0, 1]$ parameterized by classical parameters $\theta_{class}$ and quantum circuit parameters $\theta_{quant}$, such that predictive performance (measured by F1-score and ROC-AUC) is preserved while the expected number of quantum layer evaluations during inference, denoted $\mathbb{E}[L_Q(x)]$, is minimized.
+
+\subsection{Overall Architecture}
+The Adaptive HQNN architecture consists of four primary functional modules:
+\begin{enumerate}
+    \item A classical feedforward feature encoder $g_{\theta}(x)$.
+    \item A preliminary classification head producing preliminary logit $z_{prelim}(x)$ and confidence metric $C(x)$.
+    \item A parameterized quantum feature map and multi-depth variational quantum circuit.
+    \item A dynamic uncertainty router directing execution across Path 0 ($L_Q = 0$), Path 1 ($L_Q = 1$), or Path 2 ($L_Q = 2$).
+\end{enumerate}
+
+\subsection{Classical Feature Encoder and Latent Projection}
+The input feature vector $x \in \mathbb{R}^D$ is first processed by a classical dense block consisting of a linear projection, layer normalization, and a rectified linear unit (ReLU) activation:
+\begin{equation}
+h(x) = \text{ReLU}\left(\text{LayerNorm}\left(W_e x + b_e\right)\right) \in \mathbb{R}^{16}
+\end{equation}
+where $W_e \in \mathbb{R}^{16 \times D}$ and $b_e \in \mathbb{R}^{16}$.
+
+From the intermediate representation $h(x)$, a linear head generates a preliminary logit:
+\begin{equation}
+z_{prelim}(x) = w_p^T h(x) + b_p \in \mathbb{R}
+\end{equation}
+The preliminary disease probability is obtained via the logistic sigmoid function:
+\begin{equation}
+p_{prelim}(x) = \sigma(z_{prelim}(x)) = \frac{1}{1 + e^{-z_{prelim}(x)}}
+\end{equation}
+The model's prediction confidence $C(x) \in [0.5, 1.0]$ is defined as:
+\begin{equation}
+C(x) = \max\left(p_{prelim}(x), 1 - p_{prelim}(x)\right)
+\end{equation}
+
+Simultaneously, $h(x)$ is projected into a $Q$-dimensional latent space ($Q=4$ qubits) via a bounded hyperbolic tangent mapping:
+\begin{equation}
+u(x) = \pi \cdot \tanh\left(W_u h(x) + b_u\right) \in [-\pi, \pi]^Q
+\end{equation}
+
+\subsection{Parameterized Quantum Variational Layers}
+The latent vector $u(x)$ is embedded into a 4-qubit quantum register initialized in the ground state $|0\rangle^{\otimes 4}$ using Pauli-$Y$ Angle Embedding:
+\begin{equation}
+|\psi_0(u)\rangle = \bigotimes_{j=1}^Q R_Y(u_j) |0\rangle
+\end{equation}
+where $R_Y(\phi) = \exp(-i \phi \sigma_y / 2)$.
+
+The variational quantum circuit consists of parameterized single-qubit rotations followed by entangling circular CNOT gates. For layer $l \in \{1, 2\}$, the unitary operation is defined as:
+\begin{equation}
+U_l(\theta_l) = \left(\prod_{j=1}^Q \text{CNOT}_{(j, j \oplus 1)}\right) \left(\prod_{j=1}^Q R(\alpha_{l,j}, \beta_{l,j}, \gamma_{l,j})\right)
+\end{equation}
+where $R(\alpha, \beta, \gamma) = R_Z(\gamma) R_Y(\beta) R_Z(\alpha)$ represents an arbitrary single-qubit Euler rotation parameterized by trainable weights $\theta_l \in \mathbb{R}^{Q \times 3}$.
+
+For Path 1 ($L_Q=1$), the quantum state evolves as:
+\begin{equation}
+|\psi_1\rangle = U_1(\theta_1) |\psi_0(u)\rangle
+\end{equation}
+For Path 2 ($L_Q=2$), the quantum state evolves through both variational layers:
+\begin{equation}
+|\psi_2\rangle = U_2(\theta_2) U_1(\theta_1) |\psi_0(u)\rangle
+\end{equation}
+
+Expectation values of the Pauli-$Z$ observable are measured across all $Q$ qubits:
+\begin{equation}
+\langle Z_j \rangle_k = \langle \psi_k | \sigma_z^{(j)} | \psi_k \rangle, \quad j \in \{1, \dots, Q\}, \ k \in \{1, 2\}
+\end{equation}
+The measured expectation vector $\vec{z}_k \in [-1, 1]^Q$ is mapped to final classification logits via classical linear heads:
+\begin{equation}
+z_{q1}(x) = w_{q1}^T \vec{z}_1 + b_{q1}, \quad z_{q2}(x) = w_{q2}^T \vec{z}_2 + b_{q2}
+\end{equation}
+
+\subsection{Adaptive Routing Policy and Loss Formulation}
+During training, all three pathways are trained simultaneously across the entire batch to ensure stable parameter learning. The total training objective is a composite binary cross-entropy loss:
+\begin{equation}
+\mathcal{L}_{total} = \mathcal{L}_{BCE}(z_{prelim}, y) + \mathcal{L}_{BCE}(z_{q1}, y) + \mathcal{L}_{BCE}(z_{q2}, y)
+\end{equation}
+
+During inference, execution is conditionally branched according to confidence $C(x)$ and two thresholds $\tau_{high}$ and $\tau_{low}$ satisfying $0.5 \le \tau_{low} < \tau_{high} \le 1.0$:
+\begin{equation}
+z_{final}(x) = \begin{cases}
+z_{prelim}(x), & \text{if } C(x) \ge \tau_{high} \quad (\text{Path 0: } L_Q=0) \\
+z_{q1}(x), & \text{if } \tau_{low} \le C(x) < \tau_{high} \quad (\text{Path 1: } L_Q=1) \\
+z_{q2}(x), & \text{if } C(x) < \tau_{low} \quad (\text{Path 2: } L_Q=2)
+\end{cases}
+\end{equation}
+
+\subsection{Leakage-Free Inner Cross-Validation for Threshold Optimization}
+A critical methodological requirement is that routing thresholds $(\tau_{high}^*, \tau_{low}^*)$ must not be tuned on the outer validation fold. Within each outer training fold, we execute an inner 3-fold cross-validation grid search over $\tau_{high} \in [0.75, 0.95]$ and $\tau_{low} \in [0.55, 0.70]$. The selection objective maximizes inner out-of-fold F1-score penalized by average quantum layer execution:
+\begin{equation}
+\mathcal{S}(\tau_{high}, \tau_{low}) = \text{F1}_{inner} - 0.05 \cdot \left(\frac{\bar{L}_{Q, inner}}{2.0}\right)
+\end{equation}
+Once optimal thresholds $(\tau_{high}^*, \tau_{low}^*)$ are selected, the model is trained on the full outer training split and evaluated once on the untouched outer validation fold.
+
+For the isolated holdout test set ($N_{test}$), predictions are derived from the 5-fold ensemble:
+\begin{equation}
+\bar{p}_{prelim}(x) = \frac{1}{5}\sum_{k=1}^5 \sigma(z_{prelim}^{(k)}(x)), \quad \bar{C}(x) = \max(\bar{p}_{prelim}, 1 - \bar{p}_{prelim})
+\end{equation}
+Routing is determined by the mean optimal thresholds $\bar{\tau}_{high}^* = \frac{1}{5}\sum_{k=1}^5 \tau_{high}^{*(k)}$ and $\bar{\tau}_{low}^* = \frac{1}{5}\sum_{k=1}^5 \tau_{low}^{*(k)}$.
+
+\section{Datasets and Experimental Setup}
+
+\subsection{Benchmark Datasets}
+Experiments were conducted on three diverse tabular medical diagnostic benchmarks:
+\begin{enumerate}
+    \item \textbf{Wisconsin Diagnostic Breast Cancer (WDBC)}: 569 patient records with 30 continuous nuclear morphological features computed from digitized fine needle aspirate (FNA) images (357 benign, 212 malignant) \cite{street1993nuclear}.
+    \item \textbf{UCI Cleveland Heart Disease}: 303 patient records with 13 clinical and demographic attributes (164 absence, 139 presence of heart disease) \cite{detrano1989international}.
+    \item \textbf{Pima Indians Diabetes}: 768 female patient records with 8 clinical features evaluating type 2 diabetes onset (500 non-diabetic, 268 diabetic) \cite{smith1988using}.
+\end{enumerate}
+
+TABLE~\ref{tab:datasets} summarizes the structural characteristics of the three clinical datasets.
+
+\begin{table}[htbp]
+\caption{Benchmark Dataset Characteristics}
+\label{tab:datasets}
+\centering
+\begin{tabular}{lccccc}
+\toprule
+Dataset & Samples ($N$) & Features ($D$) & Class 0 & Class 1 & Missing (\%) \\
+\midrule
+WDBC Breast Cancer & 569 & 30 & 357 (62.7\%) & 212 (37.3\%) & 0.00\% \\
+UCI Heart Disease & 303 & 13 & 164 (54.1\%) & 139 (45.9\%) & 0.15\% \\
+Pima Diabetes & 768 & 8 & 500 (65.1\%) & 268 (34.9\%) & 10.61\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Leakage-Safe Preprocessing Protocol}
+Preprocessing operations were strictly fitted on training splits and applied to validation/test sets:
+\begin{itemize}
+    \item Patient identification numbers in WDBC were removed.
+    \item Cleveland heart disease missing entries (encoded as '?') were treated as null values.
+    \item Biologically implausible zero measurements in Pima Diabetes (Glucose, Blood Pressure, Skin Thickness, Insulin, BMI) were converted to missing values; legitimate zero values in Pregnancies were retained.
+    \item Missing values were imputed using median feature imputation fitted strictly on training partitions.
+    \item Continuous features were standardized to zero mean and unit variance ($z$-score) based on training statistics.
+\end{itemize}
+
+\subsection{Benchmark Models}
+Four models were implemented and evaluated under identical 5-fold CV splits:
+\begin{itemize}
+    \item \textbf{M1: Classical MLP}: 3-layer dense network ($D \to 16 \to 8 \to 1$) with LayerNorm and Dropout ($p=0.1$).
+    \item \textbf{M2: Fixed HQNN}: Classical encoder ($D \to 16 \to 4$) followed by a static 4-qubit, 2-layer VQC ($L_Q = 2.0$ for all instances).
+    \item \textbf{M3: Adaptive HQNN (Proposed)}: Uncertainty-guided dynamic quantum router ($L_Q \in \{0, 1, 2\}$).
+    \item \textbf{M4: Adaptive Classical Control}: Pure classical dynamic model of identical architecture, routing between 0, 1, or 2 classical dense transformation blocks.
+\end{itemize}
+
+\subsection{Training and Simulation Configuration}
+All models were implemented in Python using PyTorch and PennyLane \cite{bergholm2018pennylane} utilizing the `default.qubit` state-vector simulator with exact backpropagation. Optimization utilized the Adam optimizer (learning rate $\eta = 0.005$, batch size 32, 60 epochs). Stratified partitioning allocated 80\% of each dataset to cross-validation development and 20\% to an isolated holdout test set. Fixed random seeds (42) ensured exact determinism.
+
+\section{Results and Empirical Evaluation}
+
+\subsection{Predictive Performance Comparison}
+TABLE~\ref{tab:performance} reports the complete 5-fold cross-validation and holdout test metrics across all models and benchmarks.
+
+\begin{table*}[htbp]
+\caption{Model Performance Comparison Across Three Clinical Benchmarks}
+\label{tab:performance}
+\centering
+\begin{tabular}{llccccc}
+\toprule
+Dataset & Model Architecture & CV Accuracy (\%) & CV F1-Score (\%) & CV ROC-AUC & Test F1 (\%) & Test ROC-AUC \\
+\midrule
+\multirow{4}{*}{WDBC Breast Cancer} 
+& Classical MLP (M1) & 97.80 $\pm$ 0.78\% & 97.07 $\pm$ 1.07\% & 0.9947 $\pm$ 0.0086 & 98.80\% & 0.9907 \\
+& Fixed HQNN (M2) & 98.24 $\pm$ 1.67\% & 97.61 $\pm$ 2.30\% & 0.9962 $\pm$ 0.0050 & 96.30\% & 0.9940 \\
+& \textbf{Adaptive HQNN (M3)} & \textbf{96.92 $\pm$ 1.20\%} & \textbf{95.88 $\pm$ 1.65\%} & \textbf{0.9923 $\pm$ 0.0057} & \textbf{95.12\%} & \textbf{0.9907} \\
+& Adaptive Classical (M4) & 95.82 $\pm$ 1.43\% & 94.48 $\pm$ 1.85\% & 0.9913 $\pm$ 0.0118 & 96.30\% & 0.9927 \\
+\midrule
+\multirow{4}{*}{UCI Heart Disease} 
+& Classical MLP (M1) & 83.45 $\pm$ 2.23\% & 81.78 $\pm$ 2.39\% & 0.8967 $\pm$ 0.0202 & 86.67\% & 0.9578 \\
+& Fixed HQNN (M2) & 79.75 $\pm$ 1.68\% & 77.33 $\pm$ 1.44\% & 0.8884 $\pm$ 0.0170 & 85.25\% & 0.9307 \\
+& \textbf{Adaptive HQNN (M3)} & \textbf{76.02 $\pm$ 4.10\%} & \textbf{73.49 $\pm$ 3.50\%} & \textbf{0.8138 $\pm$ 0.0693} & \textbf{85.25\%} & \textbf{0.9524} \\
+& Adaptive Classical (M4) & 74.78 $\pm$ 4.10\% & 72.90 $\pm$ 3.85\% & 0.8162 $\pm$ 0.0426 & 85.25\% & 0.9448 \\
+\midrule
+\multirow{4}{*}{Pima Indians Diabetes} 
+& Classical MLP (M1) & 77.03 $\pm$ 2.41\% & 70.66 $\pm$ 3.08\% & 0.8452 $\pm$ 0.0276 & 67.72\% & 0.8148 \\
+& Fixed HQNN (M2) & 76.71 $\pm$ 3.26\% & 70.36 $\pm$ 2.43\% & 0.8368 $\pm$ 0.0245 & 65.04\% & 0.7876 \\
+& \textbf{Adaptive HQNN (M3)} & \textbf{73.94 $\pm$ 2.34\%} & \textbf{66.27 $\pm$ 1.93\%} & \textbf{0.7982 $\pm$ 0.0347} & \textbf{66.67\%} & \textbf{0.8144} \\
+& Adaptive Classical (M4) & 73.45 $\pm$ 1.84\% & 65.04 $\pm$ 2.83\% & 0.7747 $\pm$ 0.0610 & 59.83\% & 0.8057 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+On WDBC, Fixed HQNN achieves the highest CV accuracy ($98.24\%$) and CV ROC-AUC ($0.9962$). Adaptive HQNN achieves $96.92\%$ CV accuracy and $0.9923$ CV ROC-AUC, while holdout test ROC-AUC matches the Classical MLP baseline at $0.9907$. On Heart Disease, Classical MLP achieves $83.45\%$ CV accuracy, whereas Adaptive HQNN achieves $76.02\%$ CV accuracy but demonstrates robust generalization on the holdout test set with an F1-score of $85.25\%$ and ROC-AUC of $0.9524$. On Pima Diabetes, Adaptive HQNN achieves $73.94\%$ CV accuracy and $66.67\%$ holdout test F1-score, outperforming the Adaptive Classical Control ($59.83\%$).
+
+\subsection{Quantum Resource Efficiency and Dynamic Routing Distribution}
+TABLE~\ref{tab:efficiency} presents the distribution of inference routing allocations and the resulting estimated quantum workload reductions.
+
+\begin{table*}[htbp]
+\caption{Inference Routing Allocation and Estimated Quantum Workload Reduction}
+\label{tab:efficiency}
+\centering
+\begin{tabular}{lccccc}
+\toprule
+Dataset & Classical-only (0 Q) & 1 Quantum Layer & 2 Quantum Layers & Avg Q-Layers / Sample & Workload Reduction (\%) \\
+\midrule
+WDBC Breast Cancer & 98.0 $\pm$ 0.9\% & 1.5 $\pm$ 1.0\% & 0.4 $\pm$ 0.6\% & \textbf{0.02 $\pm$ 0.01} & \textbf{98.8\% Saved} \\
+UCI Heart Disease & 79.8 $\pm$ 7.3\% & 16.1 $\pm$ 8.9\% & 4.1 $\pm$ 4.2\% & \textbf{0.24 $\pm$ 0.08} & \textbf{87.8\% Saved} \\
+Pima Indians Diabetes & 71.0 $\pm$ 4.0\% & 17.3 $\pm$ 9.1\% & 11.7 $\pm$ 7.7\% & \textbf{0.41 $\pm$ 0.08} & \textbf{79.6\% Saved} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+On WDBC, $98.0\%$ of patient instances are resolved via Path 0 without invoking quantum simulation, yielding a $98.8\%$ reduction in estimated quantum layer executions relative to Fixed HQNN ($0.02$ vs. $2.00$ layers/sample). On Heart Disease, $79.8\%$ of instances are routed to Path 0, $16.1\%$ to Path 1, and $4.1\%$ to Path 2, achieving an $87.8\%$ workload reduction ($0.24$ layers/sample). On Pima Diabetes, where feature overlap is higher, $71.0\%$ of instances use Path 0, while $29.0\%$ require quantum escalation ($17.3\%$ Path 1, $11.7\%$ Path 2), resulting in a $79.6\%$ estimated reduction ($0.41$ layers/sample).
+
+\subsection{Statistical Hypothesis Testing}
+Paired Wilcoxon signed-rank tests were performed across matching cross-validation folds ($N=5$ per dataset). For the primary comparison between Adaptive HQNN (M3) and Fixed HQNN (M2), the paired tests yielded:
+\begin{itemize}
+    \item WDBC: Accuracy $W=0.0, p=0.250$; F1 $W=0.0, p=0.250$; ROC-AUC $W=1.0, p=0.125$.
+    \item Heart Disease: Accuracy $W=0.0, p=0.250$; F1 $W=1.0, p=0.250$; ROC-AUC $W=0.0, p=0.0625$.
+    \item Pima Diabetes: Accuracy $W=0.0, p=0.0625$; F1 $W=0.0, p=0.0625$; ROC-AUC $W=0.0, p=0.0625$.
+\end{itemize}
+In all individual benchmark tests, $p \ge 0.05$. Under standard statistical testing protocol, no statistically significant difference was detected in the paired Wilcoxon analysis.
+
+\subsection{Explainable AI and Routing Associations}
+Global Kernel SHAP analysis identified the dominant predictive features for each modality: `worst concave points` and `worst perimeter` for WDBC; `thalach` (maximum heart rate) and `oldpeak` (ST depression) for Heart Disease; and `Glucose` and `BMI` for Diabetes.
+
+Surrogate routing analysis indicated that instances allocated to Path 1 and Path 2 exhibited biomarker distributions near diagnostic threshold boundaries. In Diabetes, Path 2 instances displayed greater dispersion in plasma glucose and BMI compared to high-confidence Path 0 instances. In Heart Disease, cases routed to quantum layers were associated with intermediate ST depression values ($1.0 \le \text{oldpeak} \le 2.5$). These observations represent empirical behavioral associations of the routing mechanism rather than causal biological relationships.
+
+\section{Discussion}
+The experimental results demonstrate a clear, measurable trade-off between predictive performance and estimated inference-time quantum workload. 
+
+First, the magnitude of quantum layer reduction correlates with intrinsic dataset separability. On WDBC, where morphological features offer high linear and non-linear separability, the preliminary classical encoder achieves high confidence for $98\%$ of instances, rendering quantum processing largely redundant. Conversely, in Pima Diabetes and Heart Disease, where physiological distributions overlap substantially, the adaptive router escalates $20\%$ to $29\%$ of instances to quantum variational layers.
+
+Second, the reduction in estimated inference workload is accompanied by a slight decrease in cross-validation F1-score relative to Fixed HQNN ($-1.73\%$ on WDBC, $-3.84\%$ on Heart, $-4.09\%$ on Diabetes). This illustrates the operational trade-off of adaptive execution: routing borderline instances through shallower pathways can introduce minor decision boundary shifts. However, generalization on the holdout test set remained competitive, with Adaptive HQNN achieving an F1-score of $85.25\%$ on Heart Disease (identical to Fixed HQNN) and $66.67\%$ on Diabetes (exceeding Fixed HQNN's $65.04\%$).
+
+Third, comparisons with the Adaptive Classical Control (M4) reveal that Adaptive HQNN maintains higher cross-validation F1-scores across all three benchmarks ($95.88\%$ vs. $94.48\%$ on WDBC, $73.49\%$ vs. $72.90\%$ on Heart, and $66.27\%$ vs. $65.04\%$ on Diabetes), indicating that variational quantum layers provide expressive latent transformations when selectively engaged.
+
+\section{Limitations and Threats to Validity}
+Several limitations must be explicitly acknowledged:
+\begin{enumerate}
+    \item \textbf{Dataset Scale}: Benchmark datasets represent relatively small cohorts ($N=303$ to $768$). While standard in literature, small sample sizes limit statistical power and generalizability.
+    \item \textbf{Simulation vs. Hardware}: Quantum circuits were evaluated using state-vector numerical simulation. Physical NISQ processors exhibit device-specific gate noise, readout crosstalk, and thermal decoherence.
+    \item \textbf{Workload Metric}: Quantum workload is quantified as estimated layer executions per sample. This does not directly measure cryogenic power, physical execution time, or compilation overheads.
+    \item \textbf{No Quantum Advantage}: This study does not demonstrate quantum advantage or supremacy over classical algorithms, as classical MLPs achieve competitive metrics.
+    \item \textbf{XAI Scope}: SHAP attributions reflect model decision associations and do not imply causal clinical pathology.
+\end{enumerate}
+
+\section{Conclusion and Future Work}
+This paper introduced Adaptive HQNN, a hybrid quantum-classical architecture featuring uncertainty-guided dynamic quantum layer selection for medical tabular classification. Across three benchmark datasets, the proposed method achieved estimated inference-time quantum layer reductions of 79.6\% to 98.8\% compared to fixed-depth quantum models, with paired Wilcoxon signed-rank tests detecting no statistically significant difference in ROC-AUC ($p \ge 0.05$).
+
+Future work will investigate deploying Adaptive HQNN on physical superconducting and trapped-ion quantum processors, evaluating multi-class diagnostic extensions, and incorporating Bayesian uncertainty quantification within the dynamic routing policy.
+
+\begin{thebibliography}{00}
+\bibitem{biamonte2017quantum} J. Biamonte, P. Wittek, N. Pancotti, P. Rebentrost, N. Wiebe, and S. Lloyd, ``Quantum machine learning,'' \textit{Nature}, vol. 549, no. 7671, pp. 195--202, 2017.
+\bibitem{cerezo2021variational} M. Cerezo, A. Arrasmith, R. Babbush, S. C. Benjamin, S. Endo, K. E. Khoshaman, G. E. Roberts, K. Tian, C. Zhang, and P. J. Coles, ``Variational quantum algorithms,'' \textit{Nature Reviews Physics}, vol. 3, no. 9, pp. 625--644, 2021.
+\bibitem{chen2016xgboost} T. Chen and C. Guestrin, ``XGBoost: A scalable tree boosting system,'' in \textit{Proc. 22nd ACM SIGKDD Int. Conf. Knowledge Discovery and Data Mining}, 2016, pp. 785--794.
+\bibitem{gorishniy2021revisiting} Y. Gorishniy, I. Rubachev, V. Khrulkov, and A. Babenko, ``Revisiting deep learning models for tabular data,'' in \textit{Proc. Advances in Neural Information Processing Systems (NeurIPS)}, vol. 34, 2021, pp. 18932--18943.
+\bibitem{street1993nuclear} W. N. Street, W. H. Wolberg, and O. L. Mangasarian, ``Nuclear feature extraction for breast tumor diagnosis,'' in \textit{Proc. IS\&T/SPIE 1993 Int. Symp. Electronic Imaging: Science and Technology}, vol. 1905, 1993, pp. 861--870.
+\bibitem{detrano1989international} R. Detrano, A. Janosi, W. Steinbrunn, M. Pfisterer, J. Schmid, S. Sandhu, K. Guppy, S. Lee, and V. Froelicher, ``International application of a new probability algorithm for the diagnosis of coronary artery disease,'' \textit{American Journal of Cardiology}, vol. 64, no. 5, pp. 304--310, 1989.
+\bibitem{smith1988using} J. W. Smith, J. E. Everhart, W. C. Dickson, W. C. Knowler, and R. S. Johannes, ``Using the ADAP learning algorithm to forecast the onset of diabetes mellitus,'' in \textit{Proc. Annual Symp. on Computer Application in Medical Care}, 1988, pp. 261--265.
+\bibitem{schuld2019quantum} M. Schuld and N. Killoran, ``Quantum machine learning in feature Hilbert spaces,'' \textit{Physical Review Letters}, vol. 122, no. 4, p. 040504, 2019.
+\bibitem{havlicek2019supervised} V. Havl{\'\i}{\v{c}}ek, A. D. C{\'o}rcoles, K. Temme, A. W. Harrow, A. Kandala, J. M. Chow, and J. M. Gambetta, ``Supervised learning with quantum-enhanced feature spaces,'' \textit{Nature}, vol. 567, no. 7747, pp. 209--212, 2019.
+\bibitem{mitarai2018quantum} K. Mitarai, M. Negoro, M. Kitagawa, and K. Fujii, ``Quantum circuit learning,'' \textit{Physical Review A}, vol. 98, no. 3, p. 032309, 2018.
+\bibitem{bergholm2018pennylane} V. Bergholm, J. Izaac, M. Schuld, C. Gogolin, M. S. Alam, S. Ahmed, J. M. Arrazola, C. Blank, A. Delgado, S. Di Matteo, et al., ``PennyLane: Automatic differentiation of hybrid quantum-classical computations,'' \textit{arXiv preprint arXiv:1811.04968}, 2018.
+\bibitem{broughton2020tensorflow} M. Broughton, G. Verdon, T. McCourt, A. J. Martinez, J. H. Yoo, S. V. Isakov, P. Massey, R. Halavati, M. Y. Niu, A. Zlokapa, et al., ``TensorFlow Quantum: A software framework for quantum machine learning,'' \textit{arXiv preprint arXiv:2003.02989}, 2020.
+\bibitem{mcclean2018barren} J. R. McClean, S. Boixo, V. N. Smelyanskiy, R. Babbush, and H. Neven, ``Barren plateaus in quantum neural network training landscapes,'' \textit{Nature Communications}, vol. 9, no. 1, p. 4812, 2018.
+\bibitem{teerapittayanon2016branchynet} S. Teerapittayanon, B. McDanel, and H. T. Kung, ``BranchyNet: Fast inference via early exiting from deep neural networks,'' in \textit{Proc. 23rd Int. Conf. Pattern Recognition (ICPR)}, 2016, pp. 2464--2469.
+\bibitem{huang2018multi} G. Huang, D. Chen, T. Li, F. Wu, L. van der Maaten, and K. Q. Weinberger, ``Multi-scale dense networks for resource efficient image classification,'' in \textit{Proc. Int. Conf. Learning Representations (ICLR)}, 2018.
+\bibitem{han2021dynamic} Y. Han, G. Huang, S. Song, L. Yang, H. Wang, and Y. Wang, ``Dynamic neural networks: A survey,'' \textit{IEEE Transactions on Pattern Analysis and Machine Intelligence}, vol. 44, no. 11, pp. 7436--7456, 2021.
+\bibitem{lundberg2017unified} S. M. Lundberg and S.-I. Lee, ``A unified approach to interpreting model predictions,'' in \textit{Proc. Advances in Neural Information Processing Systems (NeurIPS)}, vol. 30, 2017, pp. 4765--4774.
+\bibitem{ribeiro2016why} M. T. Ribeiro, S. Singh, and C. Guestrin, ```Why should I trust you?': Explaining the predictions of any classifier,'' in \textit{Proc. 22nd ACM SIGKDD Int. Conf. Knowledge Discovery and Data Mining}, 2016, pp. 1135--1144.
+\end{thebibliography}
+
+\end{document}

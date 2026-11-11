@@ -1,0 +1,4 @@
+Dataset,Preliminary Head ECE,Preliminary Head Brier Score,Adaptive HQNN Final ECE,Adaptive HQNN Final Brier Score
+Wisconsin Diagnostic Breast Cancer (WDBC),0.0223,0.0232,0.0338,0.0287
+UCI Heart Disease (Cleveland),0.0885,0.0984,0.0855,0.0917
+Pima Indians Diabetes Database,0.0868,0.1776,0.1124,0.1817

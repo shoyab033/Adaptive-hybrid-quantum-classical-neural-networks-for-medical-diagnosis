@@ -1,0 +1,56 @@
+dataset_name: "heart"
+display_name: "UCI Heart Disease (Cleveland)"
+source: "UCI Machine Learning Repository"
+raw_data_url: "https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data"
+raw_data_path: "data/raw/heart/processed.cleveland.data"
+
+target:
+  name: "num"
+  binary_rule: "gt_zero"  # values > 0 indicate presence of heart disease (1), 0 indicates absence (0)
+  positive_int: 1
+  negative_int: 0
+  description: "0 = no disease, 1..4 = heart disease"
+
+raw_columns:
+  - "age"
+  - "sex"
+  - "cp"
+  - "trestbps"
+  - "chol"
+  - "fbs"
+  - "restecg"
+  - "thalach"
+  - "exang"
+  - "oldpeak"
+  - "slope"
+  - "ca"
+  - "thal"
+  - "num"
+
+features:
+  numerical:
+    - "age"
+    - "trestbps"
+    - "chol"
+    - "thalach"
+    - "oldpeak"
+  categorical:
+    - "sex"
+    - "cp"
+    - "fbs"
+    - "restecg"
+    - "exang"
+    - "slope"
+    - "ca"
+    - "thal"
+  drop_columns: []
+
+missing_values:
+  token: "?"
+  zero_as_missing_columns: []
+  imputation_strategy_num: "median"
+  imputation_strategy_cat: "most_frequent"
+
+preprocessing:
+  scaler: "standard"
+  encode_categorical: "onehot"  # or ordinal

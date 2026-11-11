@@ -1,0 +1,4 @@
+Dataset,Local File,Size (Bytes),SHA-256,Source URL
+Wisconsin Diagnostic Breast Cancer (WDBC),wdbc.data,124103,d606af411f3e5be8a317a5a8b652b425aaf0ff38ca683d5327ffff94c3695f4a,https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.data
+UCI Heart Disease (Cleveland),processed.cleveland.data,18461,a74b7efa387bc9d108d7d0115d831fe9b414b29ae7124f331b622b4efa0427c8,https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data
+Pima Indians Diabetes Database,pima-indians-diabetes.csv,23278,6bfe5d0f379d17a0e0819b996407e3c09bf80febd4287f2ed212190dfff154af,https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.data.csv

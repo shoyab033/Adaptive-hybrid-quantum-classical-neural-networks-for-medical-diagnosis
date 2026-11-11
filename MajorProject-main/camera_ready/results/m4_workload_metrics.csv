@@ -1,0 +1,4 @@
+Dataset,CV 0-Refine Blocks (%),CV 1-Refine Block (%),CV 2-Refine Blocks (%),CV Avg Blocks/Sample,CV Refinement Reduction (%),Test 0-Refine (%),Test 1-Refine (%),Test 2-Refine (%),Test Avg Blocks/Sample,Test Refinement Reduction (%),"Median Thresholds (tau_h, tau_l)"
+Wisconsin Diagnostic Breast Cancer (WDBC),98.5 ± 0.9,1.3 ± 0.8,0.2 ± 0.4,0.02 ± 0.01,99.1%,96.5%,3.5%,0.0%,0.04,98.2%,"(0.75, 0.55)"
+UCI Heart Disease (Cleveland),82.6 ± 5.1,11.6 ± 5.9,5.8 ± 3.4,0.23 ± 0.06,88.4%,78.7%,14.8%,6.6%,0.28,86.1%,"(0.75, 0.55)"
+Pima Indians Diabetes Database,66.6 ± 5.5,24.1 ± 1.7,9.3 ± 5.0,0.43 ± 0.10,78.7%,64.9%,28.6%,6.5%,0.42,79.2%,"(0.75, 0.55)"
